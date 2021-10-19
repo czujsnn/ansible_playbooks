@@ -1,0 +1,33 @@
+
+---
+- name: Uninstall Httpd/Apache on RHEL/Ubuntu...
+  hosts: all
+  become: true
+  tasks:
+  - name: stop apache@RedHat Family
+    service:
+      name: httpd
+      state: stopped
+    when: ansible_os_family == "RedHat"
+
+  - name: uninstalling httpd package@RedHat Family
+    yum:
+      name: httpd
+      state: removed
+    when: ansible_os_family == "RedHat"
+
+
+  - name: stopping apache2@Debian Family
+    service:
+      name: apache2
+      state: stopped
+    when: ansible_os_family == "Debian"
+
+
+  - name: uninstall apache2@Debian Family
+    apt:
+      name: apache2
+      state: absent
+    when: ansible_os_family == "Debian"
+
+

@@ -1,0 +1,10 @@
+---
+- name: Creating a file/dir
+  hosts: all
+  become: false
+  tasks:
+  - name: creating a file...
+    file:
+      path: /home/ansadmin/demo_dir_no_admin
+      state: directory
+

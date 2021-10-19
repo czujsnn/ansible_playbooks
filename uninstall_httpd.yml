@@ -1,0 +1,17 @@
+---
+- name: Install Httpd...
+  hosts: web,app
+  become: true
+  tasks:
+  - name: uninstall httpd
+    service:
+      name: httpd
+      state: stopped
+
+  - name: uninstall httpd
+    yum:
+      name: httpd
+      state: removed
+  
+
+

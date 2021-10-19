@@ -1,0 +1,9 @@
+---
+- name: shutdown apache service
+  hosts: all
+  become: true
+  tasks:
+  - name: shutting down apache service (httpd)
+    service:
+      name: httpd
+      state: stopped

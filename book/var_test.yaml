@@ -1,0 +1,9 @@
+---
+- name: test vars
+  hosts: all
+  tasks:
+    - name: echo id -un
+      command: id -un
+      register: login
+    - debug: msg="logged in as user {{ login.stdout }}"
+

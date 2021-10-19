@@ -1,0 +1,15 @@
+---
+- name: apache on ubuntu
+  hosts: ubuntu
+  become: true
+  tasks:
+  - name: install apache2
+    apt:
+      name: apache2
+      state: latest
+
+  - name: start apache2
+    service:
+      name: apache2
+      enabled: yes
+      state: reloaded

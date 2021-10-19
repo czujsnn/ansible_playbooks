@@ -1,0 +1,9 @@
+---
+- name: install packages for web servers
+  hosts: [rhel,centos]
+  become: true
+  tasks:
+  - name: install package with yum
+    yum:
+      name: ['git','make','gcc','wget','telnet','gzip']
+      state: installed

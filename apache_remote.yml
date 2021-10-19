@@ -1,0 +1,29 @@
+---
+- name: Install and Run Apache webserver on two remote servers - rhel and centos
+  hosts: rhel
+  become: true
+  tasks:
+
+  - name: Install HTTPD service (not running right now)
+    yum:
+      name: httpd
+      state: latest
+    
+  - name: run httpd service on remote
+    ansible.builtin.systemd:
+      name: httpd.service
+      state: started
+      enabled: yes
+
+  - name: copy index to /var/www/
+    copy:
+      src: index.html
+      dest: /var/www/html/
+
+  - name: configure httpd firewall
+    firewalld:
+      zone: public
+      service: https
+      permanent: true
+      immediate: true
+      state: enabled
